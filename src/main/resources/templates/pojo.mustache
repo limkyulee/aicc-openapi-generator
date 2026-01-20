@@ -1,0 +1,41 @@
+﻿/**
+ * {{description}}{{^description}}{{classname}}{{/description}}
+ */
+{{#jackson}}
+import com.fasterxml.jackson.annotation.*;
+{{/jackson}}
+{{#imports}}
+import {{import}};
+{{/imports}}
+import java.util.Objects;
+
+@lombok.Data
+@lombok.Builder
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+{{#generatedAnnotation}}
+@{{generatedAnnotation}}
+{{/generatedAnnotation}}
+{{#additionalModelTypeAnnotations}}
+{{{.}}}
+{{/additionalModelTypeAnnotations}}
+public class {{classname}} {
+
+    {{#vars}}
+    {{#description}}
+    /**
+     * {{description}}
+     */
+    {{/description}}
+    {{#jackson}}
+    @JsonProperty("{{baseName}}")
+    {{/jackson}}
+    {{#beanValidation}}
+    {{#required}}
+    @jakarta.validation.constraints.NotNull
+    {{/required}}
+    {{/beanValidation}}
+    private {{{dataType}}} {{name}};
+
+    {{/vars}}
+}
